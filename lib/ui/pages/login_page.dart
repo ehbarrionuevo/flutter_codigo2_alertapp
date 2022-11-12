@@ -1,3 +1,4 @@
+import 'package:codigo2_alerta/models/user_model.dart';
 import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
@@ -8,6 +9,16 @@ import 'package:flutter/material.dart';
 class LoginPage extends StatelessWidget {
 
   final TextEditingController _dniController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+
+  Future _login() async{
+    ApiService apiService = ApiService();
+    String _dni = _dniController.text;
+    String _password = _passwordController.text;
+    UserModel? userModel = await apiService.login(_dni, _password);
+    print(userModel);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,13 +62,14 @@ class LoginPage extends StatelessWidget {
                   controller: _dniController,
                 ),
                 spacing30,
-                TextFieldCustomPasswordWidget(),
+                TextFieldCustomPasswordWidget(
+                  controller: _passwordController,
+                ),
                 spacing30,
 
                 InkWell(
                   onTap: (){
-                    // ApiService apiService = ApiService();
-                    // apiService.login();
+                    _login();
                   },
                   child: Container(
                     width: double.infinity,
