@@ -5,6 +5,7 @@ import 'package:codigo2_alerta/ui/pages/home_page.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/textfield_custom_widget.dart';
 import 'package:codigo2_alerta/utils/assets_data.dart';
+import 'package:codigo2_alerta/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -72,6 +73,7 @@ class LoginPage extends StatelessWidget {
                     controller: _dniController,
                     label: "Tu número de DNI",
                     hintText: "Ingresa tu DNI",
+                    inputTypeEnum: InputTypeEnum.dni,
                   ),
                   spacing30,
                   TextFieldCustomPasswordWidget(

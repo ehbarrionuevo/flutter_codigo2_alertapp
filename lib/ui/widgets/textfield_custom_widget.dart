@@ -32,6 +32,7 @@ class TextFieldCustomWidget extends StatelessWidget {
         spacing10,
         TextFormField(
           controller: controller,
+          keyboardType: inputTypeMap[inputTypeEnum],
           style: TextStyle(
             color: kFontPrimaryColor.withOpacity(0.80),
             fontSize: 14.0,
