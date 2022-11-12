@@ -53,8 +53,14 @@ class TextFieldCustomWidget extends StatelessWidget {
   }
 }
 
-class TextFieldCustomPasswordWidget extends StatelessWidget {
-  const TextFieldCustomPasswordWidget({Key? key}) : super(key: key);
+class TextFieldCustomPasswordWidget extends StatefulWidget {
+  @override
+  State<TextFieldCustomPasswordWidget> createState() => _TextFieldCustomPasswordWidgetState();
+}
+
+class _TextFieldCustomPasswordWidgetState extends State<TextFieldCustomPasswordWidget> {
+
+  bool isInvisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +77,7 @@ class TextFieldCustomPasswordWidget extends StatelessWidget {
         ),
         spacing10,
         TextFormField(
+          obscureText: isInvisible,
           style: TextStyle(
             color: kFontPrimaryColor.withOpacity(0.80),
             fontSize: 14.0,
@@ -81,10 +88,18 @@ class TextFieldCustomPasswordWidget extends StatelessWidget {
               fontSize: 14.0,
               color: kFontPrimaryColor.withOpacity(0.5),
             ),
-            suffixIcon: Icon(
-              Icons.remove_red_eye_outlined,
-              size: 18.0,
-              color: kFontPrimaryColor.withOpacity(0.50),
+            suffixIcon: IconButton(
+              icon: Icon(
+                Icons.remove_red_eye_outlined,
+                size: 18.0,
+                color: kFontPrimaryColor.withOpacity(0.50),
+              ),
+              onPressed: (){
+                isInvisible = !isInvisible;
+                setState(() {
+
+                });
+              },
             ),
             contentPadding:
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 15.0),
