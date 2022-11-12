@@ -35,11 +35,41 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
+                  childAspectRatio: 1.2,
+                  crossAxisSpacing: 14.0,
+                  mainAxisSpacing: 14.0,
                   children: [
-                    Container(color: Colors.redAccent,),
-                    Container(color: Colors.blue,),
-                    Container(color: Colors.redAccent,),
-                    Container(color: Colors.blue,),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(14.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.06),
+                            // color: Colors.red,
+                            offset: const Offset(0, 4),
+                            blurRadius: 12.0
+                          ),
+                        ],
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.people,),
+                          spacing6,
+                          Text("Ciudadanos",),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      color: Colors.blue,
+                    ),
+                    Container(
+                      color: Colors.redAccent,
+                    ),
+                    Container(
+                      color: Colors.blue,
+                    ),
                   ],
                 ),
               ),
