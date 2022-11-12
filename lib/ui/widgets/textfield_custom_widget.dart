@@ -2,6 +2,7 @@ import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:codigo2_alerta/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFieldCustomWidget extends StatelessWidget {
   String label;
@@ -9,12 +10,11 @@ class TextFieldCustomWidget extends StatelessWidget {
   TextEditingController controller;
   InputTypeEnum? inputTypeEnum;
 
-  TextFieldCustomWidget({
-    required this.controller,
-    required this.label,
-    required this.hintText,
-    this.inputTypeEnum
-  });
+  TextFieldCustomWidget(
+      {required this.controller,
+      required this.label,
+      required this.hintText,
+      this.inputTypeEnum});
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +34,14 @@ class TextFieldCustomWidget extends StatelessWidget {
           controller: controller,
           keyboardType: inputTypeMap[inputTypeEnum],
           maxLength: inputTypeEnum == InputTypeEnum.dni ? 8 : null,
+          inputFormatters: inputTypeEnum == InputTypeEnum.dni ||
+                  inputTypeEnum == InputTypeEnum.telefono
+              ? [
+                  FilteringTextInputFormatter.allow(
+                    RegExp("[0-9]"),
+                  ),
+                ]
+              : [],
           style: TextStyle(
             color: kFontPrimaryColor.withOpacity(0.80),
             fontSize: 14.0,
@@ -76,12 +84,12 @@ class TextFieldCustomWidget extends StatelessWidget {
               ),
             ),
           ),
-          validator: (String? value){
-            if(value != null && value.isEmpty){
+          validator: (String? value) {
+            if (value != null && value.isEmpty) {
               return "Campo obligatorio";
             }
 
-            if(inputTypeEnum == InputTypeEnum.dni  && value!.length < 8){
+            if (inputTypeEnum == InputTypeEnum.dni && value!.length < 8) {
               return "Ingrese 8 digitos";
             }
             return null;
@@ -176,8 +184,8 @@ class _TextFieldCustomPasswordWidgetState
               ),
             ),
           ),
-          validator: (String? value){
-            if(value != null && value.isEmpty){
+          validator: (String? value) {
+            if (value != null && value.isEmpty) {
               return "Campo obligatorio";
             }
             return null;
