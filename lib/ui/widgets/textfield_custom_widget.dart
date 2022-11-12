@@ -3,7 +3,10 @@ import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldCustomWidget extends StatelessWidget {
-  const TextFieldCustomWidget({Key? key}) : super(key: key);
+
+  TextEditingController controller;
+
+  TextFieldCustomWidget({required this.controller,});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class TextFieldCustomWidget extends StatelessWidget {
         ),
         spacing10,
         TextFormField(
+          controller: controller,
           style: TextStyle(
             color: kFontPrimaryColor.withOpacity(0.80),
             fontSize: 14.0,
@@ -54,6 +58,9 @@ class TextFieldCustomWidget extends StatelessWidget {
 }
 
 class TextFieldCustomPasswordWidget extends StatefulWidget {
+  TextEditingController controller;
+  TextFieldCustomPasswordWidget({required this.controller,});
+
   @override
   State<TextFieldCustomPasswordWidget> createState() => _TextFieldCustomPasswordWidgetState();
 }
@@ -77,6 +84,7 @@ class _TextFieldCustomPasswordWidgetState extends State<TextFieldCustomPasswordW
         ),
         spacing10,
         TextFormField(
+          controller: widget.controller,
           obscureText: isInvisible,
           style: TextStyle(
             color: kFontPrimaryColor.withOpacity(0.80),

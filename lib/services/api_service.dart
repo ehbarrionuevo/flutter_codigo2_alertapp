@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
 
-  Future<UserModel?> login() async {
+  Future<UserModel?> login(String dni, String password) async {
     Uri _url = Uri.parse("$pathProduction/login/");
     http.Response response = await http.post(
       _url,
@@ -15,8 +15,8 @@ class ApiService {
       },
       body: json.encode(
         {
-          "username": "47707721",
-          "password": "mandarina",
+          "username": dni,
+          "password": password,
         },
       ),
     );
