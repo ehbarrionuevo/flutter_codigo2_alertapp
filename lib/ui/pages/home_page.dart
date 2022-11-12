@@ -30,7 +30,19 @@ class HomePage extends StatelessWidget {
                   fontSize: 15.0,
                   fontWeight: FontWeight.normal,
                 ),
-              )
+              ),
+              spacing14,
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  children: [
+                    Container(color: Colors.redAccent,),
+                    Container(color: Colors.blue,),
+                    Container(color: Colors.redAccent,),
+                    Container(color: Colors.blue,),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
