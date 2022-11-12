@@ -80,8 +80,28 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
               ),
-
-
+              spacing30,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "¿Aún no estás registrado? ",
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.normal,
+                      color: kFontPrimaryColor.withOpacity(0.75),
+                    ),
+                  ),
+                  Text(
+                    "Regístrate",
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                      color: kFontPrimaryColor.withOpacity(0.75),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
