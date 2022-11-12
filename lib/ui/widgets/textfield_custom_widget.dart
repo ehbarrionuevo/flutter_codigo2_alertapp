@@ -33,11 +33,13 @@ class TextFieldCustomWidget extends StatelessWidget {
         TextFormField(
           controller: controller,
           keyboardType: inputTypeMap[inputTypeEnum],
+          maxLength: inputTypeEnum == InputTypeEnum.dni ? 8 : null,
           style: TextStyle(
             color: kFontPrimaryColor.withOpacity(0.80),
             fontSize: 14.0,
           ),
           decoration: InputDecoration(
+            counter: const SizedBox(),
             hintText: hintText,
             hintStyle: TextStyle(
               fontSize: 14.0,
@@ -77,6 +79,10 @@ class TextFieldCustomWidget extends StatelessWidget {
           validator: (String? value){
             if(value != null && value.isEmpty){
               return "Campo obligatorio";
+            }
+
+            if(inputTypeEnum == InputTypeEnum.dni  && value!.length < 8){
+              return "Ingrese 8 digitos";
             }
             return null;
           },
