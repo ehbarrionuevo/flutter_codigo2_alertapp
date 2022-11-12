@@ -1,12 +1,13 @@
 import 'dart:convert';
 
 import 'package:codigo2_alerta/models/user_model.dart';
+import 'package:codigo2_alerta/utils/constants.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
 
   Future<UserModel?> login() async {
-    Uri _url = Uri.parse("http://alertahunter.herokuapp.com/API/login/");
+    Uri _url = Uri.parse("$pathProduction/login/");
     http.Response response = await http.post(
       _url,
       headers: {
