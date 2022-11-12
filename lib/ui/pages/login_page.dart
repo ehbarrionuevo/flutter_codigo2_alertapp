@@ -1,6 +1,7 @@
 import 'package:codigo2_alerta/models/user_model.dart';
 import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
+import 'package:codigo2_alerta/ui/pages/home_page.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/textfield_custom_widget.dart';
 import 'package:codigo2_alerta/utils/assets_data.dart';
@@ -12,13 +13,16 @@ class LoginPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  Future _login() async{
+  Future _login(BuildContext context) async{
     if(_formKey.currentState!.validate()){
       ApiService apiService = ApiService();
       String _dni = _dniController.text;
       String _password = _passwordController.text;
       UserModel? userModel = await apiService.login(_dni, _password);
-      print(userModel);
+      if(userModel != null){
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=> HomePage()), (route) => false);
+        // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+      }
       // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
       // Navigator.pushNamedAndRemoveUntil(context, newRouteName, (route) => false)
     }
@@ -75,7 +79,7 @@ class LoginPage extends StatelessWidget {
 
                   InkWell(
                     onTap: (){
-                      _login();
+                      _login(context);
                     },
                     child: Container(
                       width: double.infinity,
