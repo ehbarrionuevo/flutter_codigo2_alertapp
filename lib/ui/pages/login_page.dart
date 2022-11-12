@@ -15,6 +15,7 @@ class LoginPage extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              spacing30,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -26,11 +27,10 @@ class LoginPage extends StatelessWidget {
                   Text(
                     "Alerta App",
                     style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                      color: kFontPrimaryColor,
-                      letterSpacing: 0.05
-                    ),
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
+                        color: kFontPrimaryColor,
+                        letterSpacing: 0.05),
                   ),
                 ],
               ),
@@ -38,15 +38,50 @@ class LoginPage extends StatelessWidget {
               Text(
                 "Lorem ipsum dolor sit amet",
                 style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.normal,
-                    color: kFontPrimaryColor.withOpacity(0.75),
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.normal,
+                  color: kFontPrimaryColor.withOpacity(0.75),
                 ),
               ),
               spacing40,
               TextFieldCustomWidget(),
               spacing30,
               TextFieldCustomPasswordWidget(),
+              spacing30,
+
+              Container(
+                width: double.infinity,
+                height: 48.0,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30.0),
+                  boxShadow: [
+                    BoxShadow(
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                      color: kBrandPrimaryColor.withOpacity(0.4),
+                    ),
+                  ],
+                  gradient: LinearGradient(
+                    colors: [
+                      kBrandPrimaryColor,
+                      kBrandPrimaryColor,
+                      kBrandPrimaryColor,
+                      kBrandSecondaryColor,
+                    ],
+                  ),
+                ),
+                child: Text(
+                  "Iniciar Sesión",
+                  style: TextStyle(
+                    color: kFontPrimaryColor.withOpacity(0.75),
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16.0,
+                  ),
+                ),
+              ),
+
+
             ],
           ),
         ),
