@@ -1,15 +1,21 @@
-
-
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
 
 class ItemMenuWidget extends StatelessWidget {
-  const ItemMenuWidget({Key? key}) : super(key: key);
+  String text;
+  Color color;
+  IconData icon;
+
+  ItemMenuWidget({
+    required this.text,
+    required this.color,
+    required this.icon,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14.0),
@@ -27,17 +33,17 @@ class ItemMenuWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(12.0),
             decoration: BoxDecoration(
-              color: Color(0xfff72585).withOpacity(0.7),
+              color: color.withOpacity(0.7),
               shape: BoxShape.circle,
             ),
             child: Icon(
-              Icons.people,
+              icon,
               color: Colors.white,
             ),
           ),
           spacing6,
           Text(
-            "Ciudadanos",
+            text,
             style: TextStyle(
               color: kFontPrimaryColor.withOpacity(0.85),
               fontSize: 15.0,

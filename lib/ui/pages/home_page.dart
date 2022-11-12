@@ -40,10 +40,32 @@ class HomePage extends StatelessWidget {
                   crossAxisSpacing: 14.0,
                   mainAxisSpacing: 14.0,
                   children: [
-                    ItemMenuWidget(),
-                    ItemMenuWidget(),
-                    ItemMenuWidget(),
-                    ItemMenuWidget(),
+                    ItemMenuWidget(
+                      color: Color(0xfff72585),
+                      icon: Icons.people,
+                      text: "Ciudadanos",
+                    ),
+                    ItemMenuWidget(
+                      color: Color(0xffffba08),
+                      icon: Icons.add_alert,
+                      text: "Incidentes",
+                    ),
+                    ItemMenuWidget(
+                      color: Color(0xff00509d),
+                      icon: Icons.newspaper,
+                      text: "Noticias",
+                    ),
+                    ItemMenuWidget(
+                      color: Color(0xff02c39a),
+                      icon: Icons.bar_chart,
+                      text: "Reportes",
+                    ),
+                    ItemMenuWidget(
+                      color: Color(0xff7b2cbf),
+                      icon: Icons.bar_chart,
+                      text: "Otros",
+                    ),
+
                   ],
                 ),
               ),
