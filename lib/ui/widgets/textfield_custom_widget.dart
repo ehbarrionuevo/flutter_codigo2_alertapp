@@ -59,7 +59,27 @@ class TextFieldCustomWidget extends StatelessWidget {
                 width: 0.9,
               ),
             ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: kFontPrimaryColor.withOpacity(0.12),
+                width: 0.9,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: kFontPrimaryColor.withOpacity(0.12),
+                width: 0.9,
+              ),
+            ),
           ),
+          validator: (String? value){
+            if(value != null && value.isEmpty){
+              return "Campo obligatorio";
+            }
+            return null;
+          },
         ),
       ],
     );
@@ -135,7 +155,27 @@ class _TextFieldCustomPasswordWidgetState
                 width: 0.9,
               ),
             ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: kFontPrimaryColor.withOpacity(0.12),
+                width: 0.9,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30),
+              borderSide: BorderSide(
+                color: kFontPrimaryColor.withOpacity(0.12),
+                width: 0.9,
+              ),
+            ),
           ),
+          validator: (String? value){
+            if(value != null && value.isEmpty){
+              return "Campo obligatorio";
+            }
+            return null;
+          },
         ),
       ],
     );
