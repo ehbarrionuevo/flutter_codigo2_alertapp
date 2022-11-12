@@ -74,6 +74,7 @@ class LoginPage extends StatelessWidget {
                   spacing30,
                   TextFieldCustomPasswordWidget(
                     controller: _passwordController,
+
                   ),
                   spacing30,
 
