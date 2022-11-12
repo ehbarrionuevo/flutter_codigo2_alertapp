@@ -38,6 +38,22 @@ class _LoginPageState extends State<LoginPage> {
       } else {
         isLoading = false;
         setState(() {});
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14.0),
+            ),
+            backgroundColor: Colors.redAccent,
+            content: Row(
+              children: [
+                Icon(Icons.error_outline, color: Colors.white),
+                spacingWidth12,
+                Text("Hubo un error, inténtalo nuevamente."),
+              ],
+            ),
+          ),
+        );
       }
     }
   }
