@@ -70,6 +70,8 @@ class LoginPage extends StatelessWidget {
                   spacing40,
                   TextFieldCustomWidget(
                     controller: _dniController,
+                    label: "Tu número de DNI",
+                    hintText: "Ingresa tu DNI",
                   ),
                   spacing30,
                   TextFieldCustomPasswordWidget(

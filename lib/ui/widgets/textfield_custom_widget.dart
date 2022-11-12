@@ -1,12 +1,20 @@
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
+import 'package:codigo2_alerta/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldCustomWidget extends StatelessWidget {
-
+  String label;
+  String hintText;
   TextEditingController controller;
+  InputTypeEnum? inputTypeEnum;
 
-  TextFieldCustomWidget({required this.controller,});
+  TextFieldCustomWidget({
+    required this.controller,
+    required this.label,
+    required this.hintText,
+    this.inputTypeEnum
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +22,7 @@ class TextFieldCustomWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Tu número de DNI",
+          label,
           style: TextStyle(
             fontSize: 14.0,
             fontWeight: FontWeight.bold,
@@ -29,7 +37,7 @@ class TextFieldCustomWidget extends StatelessWidget {
             fontSize: 14.0,
           ),
           decoration: InputDecoration(
-            hintText: "Ingrese su DNI",
+            hintText: hintText,
             hintStyle: TextStyle(
               fontSize: 14.0,
               color: kFontPrimaryColor.withOpacity(0.5),
@@ -59,14 +67,17 @@ class TextFieldCustomWidget extends StatelessWidget {
 
 class TextFieldCustomPasswordWidget extends StatefulWidget {
   TextEditingController controller;
-  TextFieldCustomPasswordWidget({required this.controller,});
+  TextFieldCustomPasswordWidget({
+    required this.controller,
+  });
 
   @override
-  State<TextFieldCustomPasswordWidget> createState() => _TextFieldCustomPasswordWidgetState();
+  State<TextFieldCustomPasswordWidget> createState() =>
+      _TextFieldCustomPasswordWidgetState();
 }
 
-class _TextFieldCustomPasswordWidgetState extends State<TextFieldCustomPasswordWidget> {
-
+class _TextFieldCustomPasswordWidgetState
+    extends State<TextFieldCustomPasswordWidget> {
   bool isInvisible = true;
 
   @override
@@ -102,11 +113,9 @@ class _TextFieldCustomPasswordWidgetState extends State<TextFieldCustomPasswordW
                 size: 18.0,
                 color: kFontPrimaryColor.withOpacity(0.50),
               ),
-              onPressed: (){
+              onPressed: () {
                 isInvisible = !isInvisible;
-                setState(() {
-
-                });
+                setState(() {});
               },
             ),
             contentPadding:
