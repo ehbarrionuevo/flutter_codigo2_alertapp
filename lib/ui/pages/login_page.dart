@@ -11,39 +11,44 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  AssetData.logo,
-                  height: 20.0,
-                ),
-                spacingWidth6,
-                Text(
-                  "Alerta App",
-                  style: TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold,
-                    color: kFontPrimaryColor,
-                    letterSpacing: 0.05
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    AssetData.logo,
+                    height: 20.0,
                   ),
-                ),
-              ],
-            ),
-            spacing30,
-            Text(
-              "Lorem ipsum dolor sit amet",
-              style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.normal,
-                  color: kFontPrimaryColor.withOpacity(0.75),
+                  spacingWidth6,
+                  Text(
+                    "Alerta App",
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                      color: kFontPrimaryColor,
+                      letterSpacing: 0.05
+                    ),
+                  ),
+                ],
               ),
-            ),
-            spacing40,
-            TextFieldCustomWidget(),
-          ],
+              spacing30,
+              Text(
+                "Lorem ipsum dolor sit amet",
+                style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.normal,
+                    color: kFontPrimaryColor.withOpacity(0.75),
+                ),
+              ),
+              spacing40,
+              TextFieldCustomWidget(),
+              spacing30,
+              TextFieldCustomPasswordWidget(),
+            ],
+          ),
         ),
       ),
     );
