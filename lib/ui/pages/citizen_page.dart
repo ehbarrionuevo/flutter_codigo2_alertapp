@@ -1,12 +1,17 @@
+import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
 
 class CitizenPage extends StatelessWidget {
-  const CitizenPage({Key? key}) : super(key: key);
+
+  ApiService apiService = ApiService();
 
   @override
   Widget build(BuildContext context) {
+
+    apiService.getCitizen();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(

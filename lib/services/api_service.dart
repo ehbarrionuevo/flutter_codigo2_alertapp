@@ -33,8 +33,9 @@ class ApiService {
   Future getCitizen() async{
     Uri _url = Uri.parse("$pathProduction/ciudadanos/");
     http.Response response = await http.get(_url);
-    print(response.statusCode);
-    print(response.body);
+    if(response.statusCode == 200){
+      Map<String, dynamic> myMap = json.decode(response.body);
+    }
   }
 
 
