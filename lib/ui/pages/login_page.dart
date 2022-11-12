@@ -31,7 +31,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
-            spacing6,
+            spacing30,
             Text(
               "Lorem ipsum dolor sit amet",
               style: TextStyle(
@@ -40,7 +40,16 @@ class LoginPage extends StatelessWidget {
                   color: kFontPrimaryColor.withOpacity(0.75),
               ),
             ),
-            spacing6,
+            spacing40,
+            Text(
+              "Tu número de DNI",
+              style: TextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+                color: kFontPrimaryColor.withOpacity(0.75),
+              ),
+            ),
+            spacing10,
             TextFormField(
               style: TextStyle(
                 color: kFontPrimaryColor.withOpacity(0.80),
