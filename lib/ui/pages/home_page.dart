@@ -1,5 +1,6 @@
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/pages/citizen_page.dart';
+import 'package:codigo2_alerta/ui/pages/incident_type_page.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/item_menu_widget.dart';
 import 'package:flutter/material.dart';
@@ -69,9 +70,11 @@ class HomePage extends StatelessWidget {
                     ),
                     ItemMenuWidget(
                       color: Color(0xff7b2cbf),
-                      icon: Icons.bar_chart,
-                      text: "Otros",
-                      onTap: (){},
+                      icon: Icons.warning,
+                      text: "Tipos Incidentes",
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>IncidentTypePage()));
+                      },
                     ),
 
                   ],
