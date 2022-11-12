@@ -24,6 +24,7 @@ class CitizenPage extends StatelessWidget {
               spacing10,
               Expanded(
                 child: ListView.separated(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: 20,
                   separatorBuilder: (context, index) => const Divider(
                     indent: 12.0,

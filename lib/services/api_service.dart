@@ -28,4 +28,14 @@ class ApiService {
     return null;
 
   }
+
+
+  Future getCitizen() async{
+    Uri _url = Uri.parse("$pathProduction/ciudadanos/");
+    http.Response response = await http.get(_url);
+    print(response.statusCode);
+    print(response.body);
+  }
+
+
 }
