@@ -45,19 +45,34 @@ class HomePage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(14.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.06),
-                            // color: Colors.red,
-                            offset: const Offset(0, 4),
-                            blurRadius: 12.0
-                          ),
+                              color: Colors.black.withOpacity(0.06),
+                              // color: Colors.red,
+                              offset: const Offset(0, 4),
+                              blurRadius: 12.0),
                         ],
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.people,),
+                          Container(
+                            padding: EdgeInsets.all(12.0),
+                            decoration: BoxDecoration(
+                              color: Color(0xfff72585).withOpacity(0.7),
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.people,
+                              color: Colors.white,
+                            ),
+                          ),
                           spacing6,
-                          Text("Ciudadanos",),
+                          Text(
+                            "Ciudadanos",
+                            style: TextStyle(
+                              color: kFontPrimaryColor.withOpacity(0.85),
+                              fontSize: 15.0,
+                            ),
+                          ),
                         ],
                       ),
                     ),
