@@ -1,5 +1,6 @@
 import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
+import 'package:codigo2_alerta/ui/widgets/button_custom_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,8 @@ class RegisterIncidentModal extends StatefulWidget {
 }
 
 class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
-
   int incidentValue = 0;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -76,12 +77,15 @@ class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
                     .toList(),
                 onChanged: (int? value) {
                   incidentValue = value!;
-                  setState(() {
-
-                  });
+                  setState(() {});
                 },
               ),
             ),
+          ),
+          spacing30,
+          ButtonCustomWidget(
+            text: "Registrar Incidente",
+            onTap: (){},
           ),
         ],
       ),
