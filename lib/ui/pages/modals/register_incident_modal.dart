@@ -1,4 +1,5 @@
 import 'package:codigo2_alerta/models/incident_type_model.dart';
+import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/button_custom_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
@@ -93,7 +94,10 @@ class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
           spacing30,
           ButtonCustomWidget(
             text: "Registrar Incidente",
-            onTap: (){},
+            onTap: (){
+              ApiService apiService = ApiService();
+              apiService.registerIncident();
+            },
           ),
         ],
       ),
