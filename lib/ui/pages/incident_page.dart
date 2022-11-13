@@ -43,6 +43,26 @@ class _IncidentPageState extends State<IncidentPage>
                   fontWeight: FontWeight.normal,
                 ),
               ),
+              spacing20,
+              DropdownButton(
+                value: 1,
+                isExpanded: true,
+                items: [
+                  DropdownMenuItem(
+                    value: 1,
+                    child: Text(
+                      "Mordedura",
+                    ),
+                  ),
+                  DropdownMenuItem(
+                    value: 2,
+                    child: Text(
+                      "Robo",
+                    ),
+                  ),
+                ],
+                onChanged: (value) {},
+              ),
             ],
           ),
         );
