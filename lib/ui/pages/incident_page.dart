@@ -1,4 +1,5 @@
 import 'package:codigo2_alerta/models/incident_model.dart';
+import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/pages/modals/register_incident_modal.dart';
@@ -12,7 +13,20 @@ class IncidentPage extends StatefulWidget {
 
 class _IncidentPageState extends State<IncidentPage>
     with TickerProviderStateMixin {
+
+  List<IncidentTypeModel> incidentTypeList = [];
   ApiService apiService = ApiService();
+
+  @override
+  initState(){
+    super.initState();
+    getData();
+  }
+
+  Future<void> getData() async{
+    incidentTypeList  = await apiService.getIncidentType();
+  }
+
 
   showAddIncidentModal(BuildContext context) {
     showModalBottomSheet(
@@ -22,7 +36,9 @@ class _IncidentPageState extends State<IncidentPage>
         duration: const Duration(milliseconds: 650),
       ),
       builder: (BuildContext context) {
-        return RegisterIncidentModal();
+        return RegisterIncidentModal(
+          incidentTypeList: incidentTypeList,
+        );
       },
     );
   }

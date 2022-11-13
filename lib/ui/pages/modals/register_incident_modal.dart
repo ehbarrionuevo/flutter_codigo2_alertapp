@@ -1,11 +1,14 @@
-
-
+import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
 
 class RegisterIncidentModal extends StatefulWidget {
-  const RegisterIncidentModal({Key? key}) : super(key: key);
+  List<IncidentTypeModel> incidentTypeList;
+
+  RegisterIncidentModal({
+    required this.incidentTypeList,
+  });
 
   @override
   State<RegisterIncidentModal> createState() => _RegisterIncidentModalState();
