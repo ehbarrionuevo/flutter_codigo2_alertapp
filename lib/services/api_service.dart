@@ -58,8 +58,10 @@ class ApiService {
   Future getIncident() async{
     Uri _url = Uri.parse("$pathProduction/incidentes/");
     http.Response response = await http.get(_url);
-    print(response.statusCode);
-    print(response.body);
+    if(response.statusCode == 200){
+      List listData = json.decode(response.body);
+
+    }
   }
   
   
