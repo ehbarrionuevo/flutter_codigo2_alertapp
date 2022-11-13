@@ -44,24 +44,38 @@ class _IncidentPageState extends State<IncidentPage>
                 ),
               ),
               spacing20,
-              DropdownButton(
-                value: 1,
-                isExpanded: true,
-                items: [
-                  DropdownMenuItem(
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(
+                    color: kFontPrimaryColor.withOpacity(0.12),
+                    width: 0.9,
+                  ),
+                ),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton(
+                    borderRadius: BorderRadius.circular(16.0),
+                    elevation: 6,
                     value: 1,
-                    child: Text(
-                      "Mordedura",
-                    ),
+                    isExpanded: true,
+                    items: [
+                      DropdownMenuItem(
+                        value: 1,
+                        child: Text(
+                          "Mordedura",
+                        ),
+                      ),
+                      DropdownMenuItem(
+                        value: 2,
+                        child: Text(
+                          "Robo",
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {},
                   ),
-                  DropdownMenuItem(
-                    value: 2,
-                    child: Text(
-                      "Robo",
-                    ),
-                  ),
-                ],
-                onChanged: (value) {},
+                ),
               ),
             ],
           ),
