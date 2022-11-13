@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:codigo2_alerta/models/citizen_model.dart';
 import 'package:codigo2_alerta/models/incident_model.dart';
+import 'package:codigo2_alerta/models/incident_register_model.dart';
 import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/models/user_model.dart';
 import 'package:codigo2_alerta/utils/constants.dart';
@@ -67,7 +68,7 @@ class ApiService {
     return [];
   }
 
-  registerIncident() async {
+  registerIncident(IncidentRegisterModel model) async {
     Uri _url = Uri.parse("$pathProduction/incidentes/crear/");
     http.Response response = await http.post(
       _url,
@@ -77,10 +78,10 @@ class ApiService {
       },
       body: json.encode(
         {
-          "latitud": -16.364511,
-          "longitud": -71.544081,
-          "tipoIncidente": 1,
-          "estado": "Abierto"
+          "latitud": model.latitude,
+          "longitud": model.longitude,
+          "tipoIncidente": model.incidentTypeId,
+          "estado": model.status
         },
       ),
     );
