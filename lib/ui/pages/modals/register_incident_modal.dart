@@ -15,6 +15,15 @@ class RegisterIncidentModal extends StatefulWidget {
 }
 
 class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
+
+  int incidentValue = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    incidentValue = widget.incidentTypeList.first.id;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -53,23 +62,24 @@ class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
               child: DropdownButton(
                 borderRadius: BorderRadius.circular(16.0),
                 elevation: 6,
-                value: 1,
+                value: incidentValue,
                 isExpanded: true,
-                items: [
-                  DropdownMenuItem(
-                    value: 1,
-                    child: Text(
-                      "Mordedura",
-                    ),
-                  ),
-                  DropdownMenuItem(
-                    value: 2,
-                    child: Text(
-                      "Robo",
-                    ),
-                  ),
-                ],
-                onChanged: (value) {},
+                items: widget.incidentTypeList
+                    .map(
+                      (e) => DropdownMenuItem(
+                        value: e.id,
+                        child: Text(
+                          e.title,
+                        ),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (int? value) {
+                  incidentValue = value!;
+                  setState(() {
+
+                  });
+                },
               ),
             ),
           ),
