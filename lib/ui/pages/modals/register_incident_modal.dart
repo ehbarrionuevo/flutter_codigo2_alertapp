@@ -1,9 +1,11 @@
+import 'package:codigo2_alerta/models/incident_register_model.dart';
 import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/button_custom_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 class RegisterIncidentModal extends StatefulWidget {
   List<IncidentTypeModel> incidentTypeList;
@@ -17,13 +19,20 @@ class RegisterIncidentModal extends StatefulWidget {
 }
 
 class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
+
   int incidentValue = 0;
+  Position? position;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     incidentValue = widget.incidentTypeList.first.id;
+    getDataPosition();
+  }
+
+  getDataPosition() async {
+    position = await Geolocator.getCurrentPosition();
   }
 
   @override
@@ -94,9 +103,15 @@ class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
           spacing30,
           ButtonCustomWidget(
             text: "Registrar Incidente",
-            onTap: (){
+            onTap: () {
               ApiService apiService = ApiService();
-              apiService.registerIncident();
+              IncidentRegisterModel model = IncidentRegisterModel(
+                latitude: position!.latitude,
+                longitude: position!.longitude,
+                incidentTypeId: incidentValue,
+                status: "Abierto",
+              );
+              apiService.registerIncident(model);
             },
           ),
         ],
