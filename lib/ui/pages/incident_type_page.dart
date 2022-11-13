@@ -19,7 +19,7 @@ class IncidentTypePage extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                "Listado de Tipode de Incidentes",
+                "Listado de Tipo de Incidentes",
                 style: TextStyle(
                   color: kFontPrimaryColor.withOpacity(0.80),
                   fontSize: 18.0,
