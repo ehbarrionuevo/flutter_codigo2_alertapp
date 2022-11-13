@@ -41,7 +41,11 @@ class _IncidentPageState extends State<IncidentPage>
           incidentTypeList: incidentTypeList,
         );
       },
-    );
+    ).then((value){
+      setState(() {
+
+      });
+    });
   }
 
   @override

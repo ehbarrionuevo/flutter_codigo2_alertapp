@@ -103,7 +103,7 @@ class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
           spacing30,
           ButtonCustomWidget(
             text: "Registrar Incidente",
-            onTap: () {
+            onTap: () async {
               ApiService apiService = ApiService();
               IncidentRegisterModel model = IncidentRegisterModel(
                 latitude: position!.latitude,
@@ -111,7 +111,10 @@ class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
                 incidentTypeId: incidentValue,
                 status: "Abierto",
               );
-              apiService.registerIncident(model);
+              bool res = await apiService.registerIncident(model);
+              if(res){
+                Navigator.pop(context);
+              }
             },
           ),
         ],

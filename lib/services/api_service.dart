@@ -68,7 +68,7 @@ class ApiService {
     return [];
   }
 
-  registerIncident(IncidentRegisterModel model) async {
+  Future<bool> registerIncident(IncidentRegisterModel model) async {
     Uri _url = Uri.parse("$pathProduction/incidentes/crear/");
     http.Response response = await http.post(
       _url,
@@ -85,8 +85,10 @@ class ApiService {
         },
       ),
     );
-    print(response.statusCode);
-    print(response.body);
+    if(response.statusCode == 201){
+      return true;
+    }
+    return false;
   }
 
 }
