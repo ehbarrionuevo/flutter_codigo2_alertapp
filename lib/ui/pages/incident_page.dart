@@ -34,7 +34,7 @@ class _IncidentPageState extends State<IncidentPage>
       backgroundColor: Colors.transparent,
       transitionAnimationController: AnimationController(
         vsync: this,
-        duration: const Duration(milliseconds: 650),
+        duration: const Duration(milliseconds: 350),
       ),
       builder: (BuildContext context) {
         return RegisterIncidentModal(
