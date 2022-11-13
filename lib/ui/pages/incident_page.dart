@@ -31,6 +31,7 @@ class _IncidentPageState extends State<IncidentPage>
   showAddIncidentModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
+      backgroundColor: Colors.transparent,
       transitionAnimationController: AnimationController(
         vsync: this,
         duration: const Duration(milliseconds: 650),

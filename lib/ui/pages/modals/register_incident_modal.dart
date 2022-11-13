@@ -29,7 +29,15 @@ class _RegisterIncidentModalState extends State<RegisterIncidentModal> {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(28.0),
+          topRight: Radius.circular(28.0),
+        ),
+      ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             "Registrar Incidente",
