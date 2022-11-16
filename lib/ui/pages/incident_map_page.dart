@@ -42,21 +42,21 @@ class _IncidentMapPageState extends State<IncidentMapPage> {
           zoom: 6.5,
         ),
         markers: _markers,
-        onTap: (LatLng position){
-
-          Marker myMarker = Marker(
-            markerId: MarkerId(_markers.length.toString()),
-            position: position,
-            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRose)
-          );
-
-          _markers.add(myMarker);
-
-          setState(() {
-
-          });
-
-        },
+        // onTap: (LatLng position){
+        //
+        //   Marker myMarker = Marker(
+        //     markerId: MarkerId(_markers.length.toString()),
+        //     position: position,
+        //     icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRose)
+        //   );
+        //
+        //   _markers.add(myMarker);
+        //
+        //   setState(() {
+        //
+        //   });
+        //
+        // },
       ),
     );
   }
