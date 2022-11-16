@@ -2,6 +2,7 @@ import 'package:codigo2_alerta/models/incident_model.dart';
 import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
+import 'package:codigo2_alerta/ui/pages/incident_map_page.dart';
 import 'package:codigo2_alerta/ui/pages/modals/register_incident_modal.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class _IncidentPageState extends State<IncidentPage>
 
           InkWell(
             onTap: (){
-
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> IncidentMapPage()));
             },
             child: Container(
               padding: const EdgeInsets.all(14.0),
