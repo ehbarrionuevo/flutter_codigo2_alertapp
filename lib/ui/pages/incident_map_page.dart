@@ -1,8 +1,11 @@
 
+import 'package:codigo2_alerta/models/incident_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class IncidentMapPage extends StatefulWidget {
+  List<IncidentModel> incidentList;
+  IncidentMapPage({required this.incidentList});
   @override
   State<IncidentMapPage> createState() => _IncidentMapPageState();
 }
@@ -12,6 +15,7 @@ class _IncidentMapPageState extends State<IncidentMapPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.incidentList);
     return Scaffold(
       body: GoogleMap(
         initialCameraPosition: CameraPosition(

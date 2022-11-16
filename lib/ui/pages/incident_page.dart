@@ -14,20 +14,20 @@ class IncidentPage extends StatefulWidget {
 
 class _IncidentPageState extends State<IncidentPage>
     with TickerProviderStateMixin {
-
   List<IncidentTypeModel> incidentTypeList = [];
   ApiService apiService = ApiService();
 
+  List<IncidentModel> listData = [];
+
   @override
-  initState(){
+  initState() {
     super.initState();
     getData();
   }
 
-  Future<void> getData() async{
-    incidentTypeList  = await apiService.getIncidentType();
+  Future<void> getData() async {
+    incidentTypeList = await apiService.getIncidentType();
   }
-
 
   showAddIncidentModal(BuildContext context) {
     showModalBottomSheet(
@@ -42,10 +42,8 @@ class _IncidentPageState extends State<IncidentPage>
           incidentTypeList: incidentTypeList,
         );
       },
-    ).then((value){
-      setState(() {
-
-      });
+    ).then((value) {
+      setState(() {});
     });
   }
 
@@ -55,10 +53,16 @@ class _IncidentPageState extends State<IncidentPage>
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-
           InkWell(
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> IncidentMapPage()));
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => IncidentMapPage(
+                    incidentList: listData,
+                  ),
+                ),
+              );
             },
             child: Container(
               padding: const EdgeInsets.all(14.0),
@@ -66,7 +70,10 @@ class _IncidentPageState extends State<IncidentPage>
                 color: kFontPrimaryColor,
                 shape: BoxShape.circle,
               ),
-              child: Icon(Icons.map, color: Colors.white,),
+              child: Icon(
+                Icons.map,
+                color: Colors.white,
+              ),
             ),
           ),
           spacing10,
@@ -97,7 +104,7 @@ class _IncidentPageState extends State<IncidentPage>
                 future: apiService.getIncident(),
                 builder: (BuildContext context, AsyncSnapshot snap) {
                   if (snap.hasData) {
-                    List<IncidentModel> listData = snap.data;
+                    listData = snap.data;
                     return Expanded(
                       child: ListView.separated(
                         physics: const BouncingScrollPhysics(),
