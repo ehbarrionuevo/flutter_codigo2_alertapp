@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:codigo2_alerta/models/incident_model.dart';
 import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/services/api_service.dart';
@@ -6,6 +9,10 @@ import 'package:codigo2_alerta/ui/pages/incident_map_page.dart';
 import 'package:codigo2_alerta/ui/pages/modals/register_incident_modal.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+
 
 class IncidentPage extends StatefulWidget {
   @override
@@ -47,12 +54,48 @@ class _IncidentPageState extends State<IncidentPage>
     });
   }
 
+
+  buildPDF() async {
+    pw.Document pdf = pw.Document();
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context){
+          return pw.Text("Hola");
+        }
+      ),
+    );
+    Uint8List bytes = await pdf.save();
+    Directory directory = await getApplicationDocumentsDirectory();
+    File filePdf = File("${directory.path}/alerta.pdf");
+    filePdf.writeAsBytes(bytes);
+    print(directory.path);
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          InkWell(
+            onTap: () {
+              buildPDF();
+            },
+            child: Container(
+              padding: const EdgeInsets.all(14.0),
+              decoration: BoxDecoration(
+                color: Colors.indigo,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.picture_as_pdf,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          spacing10,
           InkWell(
             onTap: () {
               Navigator.push(
