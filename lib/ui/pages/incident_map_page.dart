@@ -1,4 +1,3 @@
-
 import 'package:codigo2_alerta/models/incident_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -14,25 +13,22 @@ class _IncidentMapPageState extends State<IncidentMapPage> {
   Set<Marker> _markers = {};
 
   @override
-  initState(){
+  initState() {
     super.initState();
     buildMarkers();
   }
 
-  buildMarkers(){
-    for(var item in widget.incidentList){
+  buildMarkers() {
+    for (var item in widget.incidentList) {
       Marker marker = Marker(
-        markerId: MarkerId(_markers.length.toString()),
-        position: LatLng(item.latitud, item.longitud),
-        onTap: (){
-          print(item.tipoIncidente.title);
-        }
-      );
+          markerId: MarkerId(_markers.length.toString()),
+          position: LatLng(item.latitud, item.longitud),
+          onTap: () {
+            print(item.tipoIncidente.title);
+          });
       _markers.add(marker);
     }
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -69,22 +65,29 @@ class _IncidentMapPageState extends State<IncidentMapPage> {
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(14.0),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          "Mordedura"
+                children: widget.incidentList
+                    .map(
+                      (e) => Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 14.0),
+                        margin: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 12.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(14.0),
                         ),
-                      ],
-                    ),
-                  ),
-                ],
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(e.tipoIncidente.title),
+                            Text("Ciudadano: ${e.datosCiudadano.nombres}"),
+                            Text("Teléfono: ${e.datosCiudadano.telefono}"),
+                            Text("Hora: ${e.hora}"),
+                            Text("Fecha: ${e.fecha}"),
+                          ],
+                        ),
+                      ),
+                    )
+                    .toList(),
               ),
             ),
           ),
