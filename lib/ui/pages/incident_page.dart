@@ -9,6 +9,8 @@ import 'package:codigo2_alerta/ui/pages/incident_map_page.dart';
 import 'package:codigo2_alerta/ui/pages/modals/register_incident_modal.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:open_filex/open_filex.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -56,19 +58,83 @@ class _IncidentPageState extends State<IncidentPage>
 
 
   buildPDF() async {
+
+    ByteData byteData = await rootBundle.load('assets/images/hoja.png');
+    Uint8List imageBytes =  byteData.buffer.asUint8List();
+
     pw.Document pdf = pw.Document();
+
     pdf.addPage(
-      pw.Page(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
         build: (pw.Context context){
-          return pw.Text("Hola");
+          return [
+            pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              children: [
+                pw.Image(
+                  pw.MemoryImage(imageBytes),
+                  height: 50.0,
+                ),
+                pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.end,
+                  children: [
+                    pw.Text("Bienvenido",),
+                    pw.Text("Av. Lima 12323 - Cercado - Arequipa",),
+                    pw.Text("343 232 122",),
+                    pw.Text("central@livcode.com",),
+                  ]
+                ),
+              ],
+            ),
+            pw.Divider(),
+
+            pw.ListView.builder(
+              itemCount: listData.length,
+              itemBuilder: (pw.Context context, int index){
+                return pw.Container(
+                  child: pw.Row(
+                    children: [
+                      pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: [
+                          pw.Text("Tipo Incidente: "),
+                          pw.Text("Ciudadano: "),
+                          pw.Text("Teléfono: "),
+                          pw.Text("Documento Identidad: "),
+                          pw.Text("Fecha: "),
+                          pw.Text("Hora: "),
+                        ],
+                      ),
+                      pw.Column(
+                        crossAxisAlignment: pw.CrossAxisAlignment.start,
+                        children: [
+                          pw.Text(listData[index].tipoIncidente.title),
+                          pw.Text(listData[index].datosCiudadano.nombres),
+                          pw.Text(listData[index].datosCiudadano.telefono),
+                          pw.Text(listData[index].datosCiudadano.dni),
+                          pw.Text(listData[index].fecha),
+                          pw.Text(listData[index].hora),
+                        ],
+                      ),
+                    ]
+                  ),
+                );
+              }
+            ),
+
+          ];
         }
       ),
     );
+
+
+
     Uint8List bytes = await pdf.save();
     Directory directory = await getApplicationDocumentsDirectory();
     File filePdf = File("${directory.path}/alerta.pdf");
     filePdf.writeAsBytes(bytes);
-    print(directory.path);
+    OpenFilex.open(filePdf.path);
   }
 
 
