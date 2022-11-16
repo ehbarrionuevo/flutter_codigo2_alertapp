@@ -14,6 +14,25 @@ class _IncidentMapPageState extends State<IncidentMapPage> {
   Set<Marker> _markers = {};
 
   @override
+  initState(){
+    super.initState();
+    buildMarkers();
+  }
+
+  buildMarkers(){
+    for(var item in widget.incidentList){
+      Marker marker = Marker(
+        markerId: MarkerId(_markers.length.toString()),
+        position: LatLng(item.latitud, item.longitud),
+      );
+      _markers.add(marker);
+    }
+    setState(() {
+
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     print(widget.incidentList);
     return Scaffold(
