@@ -93,6 +93,14 @@ class _IncidentPageState extends State<IncidentPage>
               itemCount: listData.length,
               itemBuilder: (pw.Context context, int index){
                 return pw.Container(
+                  margin: const pw.EdgeInsets.symmetric(vertical: 16.0),
+                  padding: const pw.EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+                  decoration: pw.BoxDecoration(
+                    border: pw.Border.all(
+                      width: 0.7,
+                      color: PdfColors.black
+                    ),
+                  ),
                   child: pw.Row(
                     children: [
                       pw.Column(
