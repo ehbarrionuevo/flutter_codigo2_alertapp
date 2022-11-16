@@ -51,12 +51,32 @@ class _IncidentPageState extends State<IncidentPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showAddIncidentModal(context);
-        },
-        backgroundColor: kBrandPrimaryColor,
-        child: Icon(Icons.add),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+
+          InkWell(
+            onTap: (){
+
+            },
+            child: Container(
+              padding: const EdgeInsets.all(14.0),
+              decoration: BoxDecoration(
+                color: kFontPrimaryColor,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(Icons.map, color: Colors.white,),
+            ),
+          ),
+          spacing10,
+          FloatingActionButton(
+            onPressed: () {
+              showAddIncidentModal(context);
+            },
+            backgroundColor: kBrandPrimaryColor,
+            child: Icon(Icons.add),
+          ),
+        ],
       ),
       body: SafeArea(
         child: Padding(
