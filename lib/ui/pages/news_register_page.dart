@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:codigo2_alerta/models/news_model.dart';
 import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/button_custom_widget.dart';
@@ -134,7 +135,13 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
                 text: "Registrar noticia",
                 onTap: () {
                   ApiService apiService = ApiService();
-                  apiService.registerNews(File(_imageFile!.path));
+                  NewsModel model = NewsModel(
+                    link: _linkController.text,
+                    titulo: _titleController.text,
+                    fecha: DateTime.now(),
+                    imagen: _imageFile!.path,
+                  );
+                  apiService.registerNews(model);
                 },
               ),
             ],
