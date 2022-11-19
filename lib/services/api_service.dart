@@ -30,6 +30,7 @@ class ApiService {
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = json.decode(response.body);
       UserModel userModel = UserModel.fromJson(myMap["user"]);
+
       return userModel;
     }
     return null;
