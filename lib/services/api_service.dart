@@ -8,11 +8,17 @@ import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/models/news_model.dart';
 import 'package:codigo2_alerta/models/user_model.dart';
 import 'package:codigo2_alerta/utils/constants.dart';
+import 'package:codigo2_alerta/utils/sp_global.dart';
 import 'package:http/http.dart' as http;
 import 'package:mime_type/mime_type.dart';
 import 'package:http_parser/http_parser.dart';
 
 class ApiService {
+
+
+  final SPGlobal _prefs = SPGlobal();
+
+
   Future<UserModel?> login(String dni, String password) async {
     Uri _url = Uri.parse("$pathProduction/login/");
     http.Response response = await http.post(
@@ -30,7 +36,7 @@ class ApiService {
     if (response.statusCode == 200) {
       Map<String, dynamic> myMap = json.decode(response.body);
       UserModel userModel = UserModel.fromJson(myMap["user"]);
-
+      _prefs.token = myMap["access"];
       return userModel;
     }
     return null;
@@ -79,7 +85,7 @@ class ApiService {
       _url,
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Token f192cea511f6c6231ebbee22bcec8873ac60e497",
+        "Authorization": "Token ${_prefs.token}",
       },
       body: json.encode(
         {
