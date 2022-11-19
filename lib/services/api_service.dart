@@ -100,17 +100,12 @@ class ApiService {
     
     Uri _url = Uri.parse("$pathProduction/noticias/");
     http.MultipartRequest request = http.MultipartRequest("POST", _url);
-
-    print(mime(imageFile.path));
     List<String> mimeType = mime(imageFile.path)!.split("/");
-
-    print(mimeType);
     http.MultipartFile file = await http.MultipartFile.fromPath(
       "imagen",
       imageFile.path,
       contentType: MediaType(mimeType[0], mimeType[1]),
     );
-
     request.fields["titulo"] = "Noticia: Elvis desde Flutter 1";
     request.fields["link"] = "https://www.youtube.com/watch?v=4Oyf2-7b_kQ&ab_channel=VisualPolitik";
     request.fields["fecha"] = "2022-11-18";
