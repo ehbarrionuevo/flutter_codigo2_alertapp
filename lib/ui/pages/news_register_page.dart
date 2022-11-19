@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:codigo2_alerta/services/api_service.dart';
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/button_custom_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
@@ -30,7 +31,14 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
     }
   }
 
-  getImageGallery() {}
+  getImageGallery() async {
+    _imageFile = await _imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
+    if (_imageFile != null) {
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +100,9 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
                   spacingWidth12,
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        getImageGallery();
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.amber,
                           shape: RoundedRectangleBorder(
@@ -122,7 +132,10 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
               spacing20,
               ButtonCustomWidget(
                 text: "Registrar noticia",
-                onTap: () {},
+                onTap: () {
+                  ApiService apiService = ApiService();
+                  apiService.registerNews(File(_imageFile!.path));
+                },
               ),
             ],
           ),

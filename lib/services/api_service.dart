@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:codigo2_alerta/models/citizen_model.dart';
 import 'package:codigo2_alerta/models/incident_model.dart';
@@ -7,6 +8,7 @@ import 'package:codigo2_alerta/models/incident_type_model.dart';
 import 'package:codigo2_alerta/models/user_model.dart';
 import 'package:codigo2_alerta/utils/constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:mime_type/mime_type.dart';
 
 class ApiService {
   Future<UserModel?> login(String dni, String password) async {
@@ -91,5 +93,16 @@ class ApiService {
     // return false;
     return response.statusCode == 201;
   }
+
+
+  registerNews(File imageFile){
+    
+    Uri _url = Uri.parse("$pathProduction/noticias/");
+    http.MultipartRequest request = http.MultipartRequest("POST", _url);
+
+    print(mime(imageFile.path));
+
+  }
+
 
 }
