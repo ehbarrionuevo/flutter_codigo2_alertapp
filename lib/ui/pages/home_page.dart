@@ -2,6 +2,7 @@ import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/pages/citizen_page.dart';
 import 'package:codigo2_alerta/ui/pages/incident_page.dart';
 import 'package:codigo2_alerta/ui/pages/incident_type_page.dart';
+import 'package:codigo2_alerta/ui/pages/news_page.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/item_menu_widget.dart';
 import 'package:flutter/material.dart';
@@ -63,7 +64,9 @@ class HomePage extends StatelessWidget {
                       color: Color(0xff00509d),
                       icon: Icons.newspaper,
                       text: "Noticias",
-                      onTap: (){},
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>NewsPage()));
+                      },
                     ),
                     ItemMenuWidget(
                       color: Color(0xff02c39a),
