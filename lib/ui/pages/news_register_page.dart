@@ -21,16 +21,16 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
 
   XFile? _imageFile;
 
-  getImageCamera() async{
-    _imageFile = await _imagePicker.pickImage(source: ImageSource.camera,);
-    if(_imageFile != null){
-      setState((){});
+  getImageCamera() async {
+    _imageFile = await _imagePicker.pickImage(
+      source: ImageSource.camera,
+    );
+    if (_imageFile != null) {
+      setState(() {});
     }
   }
 
-  getImageGallery(){
-
-  }
+  getImageGallery() {}
 
   @override
   Widget build(BuildContext context) {
@@ -80,11 +80,9 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
                         getImageCamera();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0)
-                        )
-                      ),
+                          backgroundColor: Colors.indigo,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0))),
                       icon: Icon(Icons.camera),
                       label: Text(
                         "Cámara",
@@ -98,9 +96,7 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.amber,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0)
-                          )
-                      ),
+                              borderRadius: BorderRadius.circular(30.0))),
                       icon: Icon(Icons.image),
                       label: Text(
                         "Galería",
@@ -110,9 +106,19 @@ class _NewsRegisterPageState extends State<NewsRegisterPage> {
                 ],
               ),
               spacing14,
-              _imageFile != null ? Image(
-                image: FileImage(File(_imageFile!.path)),
-              ) : SizedBox(),
+              _imageFile != null
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(14.0),
+                      child: Image(
+                        height: 200,
+                        width: 200,
+                        fit: BoxFit.cover,
+                        image: FileImage(
+                          File(_imageFile!.path),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
               spacing20,
               ButtonCustomWidget(
                 text: "Registrar noticia",
