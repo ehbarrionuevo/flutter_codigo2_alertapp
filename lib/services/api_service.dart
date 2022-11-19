@@ -5,6 +5,7 @@ import 'package:codigo2_alerta/models/citizen_model.dart';
 import 'package:codigo2_alerta/models/incident_model.dart';
 import 'package:codigo2_alerta/models/incident_register_model.dart';
 import 'package:codigo2_alerta/models/incident_type_model.dart';
+import 'package:codigo2_alerta/models/news_model.dart';
 import 'package:codigo2_alerta/models/user_model.dart';
 import 'package:codigo2_alerta/utils/constants.dart';
 import 'package:http/http.dart' as http;
@@ -96,25 +97,28 @@ class ApiService {
   }
 
 
-  registerNews(File imageFile) async {
+  Future<NewsModel?> registerNews(NewsModel model) async {
     
     Uri _url = Uri.parse("$pathProduction/noticias/");
     http.MultipartRequest request = http.MultipartRequest("POST", _url);
-    List<String> mimeType = mime(imageFile.path)!.split("/");
+    List<String> mimeType = mime(model.imagen)!.split("/");
     http.MultipartFile file = await http.MultipartFile.fromPath(
       "imagen",
-      imageFile.path,
+      model.imagen,
       contentType: MediaType(mimeType[0], mimeType[1]),
     );
-    request.fields["titulo"] = "Noticia: Elvis desde Flutter 1";
-    request.fields["link"] = "https://www.youtube.com/watch?v=4Oyf2-7b_kQ&ab_channel=VisualPolitik";
+    request.fields["titulo"] = model.titulo;
+    request.fields["link"] = model.link;
     request.fields["fecha"] = "2022-11-18";
     request.files.add(file);
     http.StreamedResponse streamedResponse = await request.send();
     http.Response response = await http.Response.fromStream(streamedResponse);
-    print(response.statusCode);
-    print(response.body);
-
+    if(response.statusCode == 201){
+      Map<String,dynamic> myMap = json.decode(response.body);
+      NewsModel newsModel = NewsModel.fromJson(myMap);
+      return newsModel;
+    }
+    return null;
   }
 
 
