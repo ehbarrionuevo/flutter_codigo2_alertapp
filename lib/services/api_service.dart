@@ -115,8 +115,10 @@ class ApiService {
     request.fields["link"] = "https://www.youtube.com/watch?v=4Oyf2-7b_kQ&ab_channel=VisualPolitik";
     request.fields["fecha"] = "2022-11-18";
     request.files.add(file);
-
-
+    http.StreamedResponse streamedResponse = await request.send();
+    http.Response response = await http.Response.fromStream(streamedResponse);
+    print(response.statusCode);
+    print(response.body);
 
   }
 
