@@ -1,12 +1,36 @@
+import 'dart:io';
+
 import 'package:codigo2_alerta/ui/general/colors.dart';
 import 'package:codigo2_alerta/ui/widgets/button_custom_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/general_widget.dart';
 import 'package:codigo2_alerta/ui/widgets/textfield_custom_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class NewsRegisterPage extends StatelessWidget {
+class NewsRegisterPage extends StatefulWidget {
+  @override
+  State<NewsRegisterPage> createState() => _NewsRegisterPageState();
+}
+
+class _NewsRegisterPageState extends State<NewsRegisterPage> {
   final TextEditingController _titleController = TextEditingController();
+
   final TextEditingController _linkController = TextEditingController();
+
+  final ImagePicker _imagePicker = ImagePicker();
+
+  XFile? _imageFile;
+
+  getImageCamera() async{
+    _imageFile = await _imagePicker.pickImage(source: ImageSource.camera,);
+    if(_imageFile != null){
+      setState((){});
+    }
+  }
+
+  getImageGallery(){
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +76,9 @@ class NewsRegisterPage extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        getImageCamera();
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.indigo,
                         shape: RoundedRectangleBorder(
@@ -83,6 +109,10 @@ class NewsRegisterPage extends StatelessWidget {
                   ),
                 ],
               ),
+              spacing14,
+              _imageFile != null ? Image(
+                image: FileImage(File(_imageFile!.path)),
+              ) : SizedBox(),
               spacing20,
               ButtonCustomWidget(
                 text: "Registrar noticia",
