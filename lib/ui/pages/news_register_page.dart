@@ -5,10 +5,8 @@ import 'package:codigo2_alerta/ui/widgets/textfield_custom_widget.dart';
 import 'package:flutter/material.dart';
 
 class NewsRegisterPage extends StatelessWidget {
-
-
   final TextEditingController _titleController = TextEditingController();
-
+  final TextEditingController _linkController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +18,7 @@ class NewsRegisterPage extends StatelessWidget {
           color: kFontPrimaryColor,
         ),
         leading: IconButton(
-          onPressed: (){
+          onPressed: () {
             //...
             Navigator.pop(context);
           },
@@ -45,12 +43,51 @@ class NewsRegisterPage extends StatelessWidget {
               ),
               spacing14,
               TextFieldCustomWidget(
-                controller: _titleController,
+                controller: _linkController,
                 label: "Link",
                 hintText: "Ingresa un link",
               ),
               spacing14,
-              ButtonCustomWidget(text: "Registrar noticia", onTap: (){},),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0)
+                        )
+                      ),
+                      icon: Icon(Icons.camera),
+                      label: Text(
+                        "Cámara",
+                      ),
+                    ),
+                  ),
+                  spacingWidth12,
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.amber,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0)
+                          )
+                      ),
+                      icon: Icon(Icons.image),
+                      label: Text(
+                        "Galería",
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              spacing20,
+              ButtonCustomWidget(
+                text: "Registrar noticia",
+                onTap: () {},
+              ),
             ],
           ),
         ),
